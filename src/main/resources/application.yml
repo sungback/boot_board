@@ -1,0 +1,40 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+    static-path-pattern: /resources/**
+
+#src/main/static/css/style.css 저장
+#<link rel="stylesheet" href="${root}/resources/css/style.css" />
+
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+#    username: root
+#    password: 1234
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    hikari:
+#      maximum-pool-size: 30
+#      connection-test-query: SELECT 1
+
+  datasource:
+    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    hikari:
+      maximum-pool-size: 30
+      connection-test-query: SELECT 1
+
+# mapper 이하를 로깅 위치로 설정.
+logging:
+  level:
+    com.mycom.board.mapper: TRACE
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.mycom.board
+  mapper-locations:
+  - /mapper/**/*.xml
+#  config-location: classpath:mybatis-config.xml
